@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>University TODO App</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>TODO Application</h1>
+        <p class="subtitle">Course planner with deadlines and priorities</p>
+      </header>
+
+      <section class="card form-card">
+        <h2>Add Task</h2>
+        <form id="task-form">
+          <label>
+            Task title
+            <input
+              id="task-title"
+              type="text"
+              placeholder="Read chapter 4"
+              required
+              maxlength="100"
+            />
+          </label>
+
+          <label>
+            Course
+            <input
+              id="task-course"
+              type="text"
+              placeholder="CS101"
+              required
+              maxlength="30"
+            />
+          </label>
+
+          <label>
+            Due date
+            <input id="task-due-date" type="date" required />
+          </label>
+
+          <label>
+            Priority
+            <select id="task-priority" required>
+              <option value="High">High</option>
+              <option value="Medium" selected>Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </label>
+
+          <button type="submit">Add task</button>
+        </form>
+      </section>
+
+      <section class="card controls-card">
+        <h2>Task Controls</h2>
+        <div class="controls-grid">
+          <label>
+            Search
+            <input id="search-input" type="text" placeholder="Search tasks..." />
+          </label>
+
+          <label>
+            Filter status
+            <select id="status-filter">
+              <option value="all" selected>All</option>
+              <option value="active">Active</option>
+              <option value="completed">Completed</option>
+            </select>
+          </label>
+
+          <label>
+            Sort by
+            <select id="sort-select">
+              <option value="dueDate">Due date</option>
+              <option value="priority">Priority</option>
+              <option value="createdAt">Created time</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="card list-card">
+        <div class="list-header">
+          <h2>Tasks</h2>
+          <button id="clear-completed-btn" type="button">Clear completed</button>
+        </div>
+        <ul id="task-list" aria-live="polite"></ul>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
