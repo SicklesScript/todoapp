@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SicklesScript</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<main class="terminal">
+    <header class="header">
+        <h1>SicklesScript</h1>
+        <a class="btn" th:href="@{/posts/new}">+ New Post</a>
+    </header>
+
+    <p class="flash" th:if="${message}" th:text="${message}"></p>
+
+    <section th:if="${#lists.isEmpty(posts)}" class="card">
+        <p>No posts yet. Create your first SicklesScript post.</p>
+    </section>
+
+    <section th:each="post : ${posts}" class="card">
+        <h2 th:text="${post.title}">Post title</h2>
+        <p class="meta">
+            Updated:
+            <span th:text="${#temporals.format(post.updatedAt, 'yyyy-MM-dd HH:mm')}">time</span>
+        </p>
+        <p class="preview" th:text="${#strings.abbreviate(post.content, 200)}">Post preview</p>
+        <div class="actions">
+            <a class="btn" th:href="@{'/posts/' + ${post.id}}">View</a>
+            <a class="btn" th:href="@{'/posts/' + ${post.id} + '/edit'}">Edit</a>
+            <form th:action="@{'/posts/' + ${post.id} + '/delete'}" method="post">
+                <button class="btn danger" type="submit">Delete</button>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>

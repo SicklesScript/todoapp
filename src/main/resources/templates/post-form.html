@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${formTitle} + ' | SicklesScript'">SicklesScript</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<main class="terminal">
+    <header class="header">
+        <h1 th:text="${formTitle}">Create New Post</h1>
+        <a class="btn" th:href="@{/posts}">Back</a>
+    </header>
+
+    <form class="card form" th:action="@{${formAction}}" th:object="${post}" method="post">
+        <label for="title">Title</label>
+        <input id="title" type="text" th:field="*{title}" placeholder="Post title">
+        <p class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+
+        <label for="content">Content</label>
+        <textarea id="content" rows="12" th:field="*{content}" placeholder="Write your post..."></textarea>
+        <p class="error" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></p>
+
+        <div class="actions">
+            <button class="btn" type="submit" th:text="${submitLabel}">Save</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>
